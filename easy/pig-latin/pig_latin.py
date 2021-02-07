@@ -7,9 +7,9 @@ def translate(text: str):
             front = ""
         elif re.match(".*[qu]{2}",text[i]) is not None:
             front = (re.match(".*[qu]{2}",text[i])).group(0)
-        elif re.match("[aeiou]",text[i]) is None:
-            front = ""
-            print(re.match("[y]",text[i]))
+        elif re.match(".*[aeiou].*",text[i]) is None:
+            front = (re.match("(.*)y",text[i])).group(0)
+            front = front[:len(front)-1]
         else:
             front = (re.match("^[^aeiou]+",text[i])).group(0)
         text[i] = text[i][len(front):] + text[i][:len(front)] + "ay"
