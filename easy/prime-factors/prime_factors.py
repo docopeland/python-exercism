@@ -1,7 +1,9 @@
-def factors(value):
+def factors(value,start = 2):
     facts = []
-    for i in range(2,20):
-        if value % i == 0:
-            facts = facts + [i]
-            value = value / i
+    while value > 1:
+        if value % start == 0:
+            facts.append(start)
+            value = value / start
+        else:
+            start = start + 1
     return facts
