@@ -1,6 +1,2 @@
 def transform(legacy_data):
-    diction = {}
-    for key,value in legacy_data.items():
-        for val in value:
-            diction[val.lower()] = key
-    return diction
+    return {val.lower(): k for k,v in legacy_data.items() for val in v}
