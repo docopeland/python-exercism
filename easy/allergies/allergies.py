@@ -1,4 +1,7 @@
 class Allergies:
+
+    self.allergies = ["eggs","peanuts","shellfish","strawberries","tomatoes","chocolate","pollen","cats"]
+
     def __init__(self, score):
         self.score = score
         self.vals = {1: "eggs",2:"peanuts",4:"shellfish",8:"strawberries",16:"tomatoes",32:"chocolate",64:"pollen",
@@ -16,13 +19,6 @@ class Allergies:
 
     @property
     def lst(self):
-        if self.score < 1:
-            return []
-        
-    def listicle(self,score=None,alls=[]):
-        scoring = score if score is not None else self.score
-        if self.score < 1:
-            return []
-        for key,value in sorted(self.vals.items(),key = lambda x: x[0],reverse=True):
-            if scoring >= key:
-                return self.listicle(scoring-key,alls+[value])
+        allergies = []
+        for index,value in enumerate(self.allergies):
+            if 2**index
