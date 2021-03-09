@@ -2,11 +2,4 @@ from math import sqrt
 
 def score(x, y):
     r = sqrt(x**2 + y**2)
-    if r <=1:
-        return 10
-    elif r <= 5:
-        return 5
-    elif r <= 10:
-        return 1
-    else:
-        return 0
+    return (r<=1)*5+(r<=5)*4+(r<=10)*1
