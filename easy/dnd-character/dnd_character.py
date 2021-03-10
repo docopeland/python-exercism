@@ -5,10 +5,14 @@ def modifier(roll):
 
 class Character:
     def __init__(self):
-        for abilities in  ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]:
-            self.__setattr__(abilities,self.ability)
+        self.strength = self.ability()
+        self.dexterity = self.ability()
+        self.constitution = self.ability()
+        self.intelligence = self.ability()
+        self.wisdom = self.ability()
+        self.charisma = self.ability()
+        self.hitpoints = 10 + modifier(self.constitution)
 
 
-    @property
     def ability(self):
         return sum(sorted([randrange(1,7) for i in range(5)])[1:])
