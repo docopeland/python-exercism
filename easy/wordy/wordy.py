@@ -1,19 +1,25 @@
-import re
-
-def answer(question):
-    nums = [int(i) for i in re.findall(r"[-]*[0-9]+",question)]
-    opers = [re.findall(mod,question) for mod in ["plus","minus","multiplied","divided","cubed"] if re.findall(mod,question)]
-    ops = [j for i in opers for j in i]
-    if len(nums) < 1 or len(nums) != len(ops) +1:
-        raise ValueError("need numbers")
-    val = nums[0]
-    for i in range(1,len(nums)):
-        if ops[i-1] == "plus":
-            val = val + nums[i]
-        if ops[i-1] == "minus":
-            val = val - nums[i]
-        if ops[i-1] == "multiplied":
-            val = val * nums[i]
-        if ops[i-1] == "divided":
-            val = val / nums[i]
+def answer(question: str):
+    quest = question[:-1].split()
+    quest[:2]= []
+    if len(quest) > 0 and quest[0].lstrip("-").isnumeric() and quest[-1].lstrip("-").isnumeric():
+        val = int(quest[0])
+    else:
+        raise ValueError("bad question")
+    if len(quest) > 1:
+        for i in range(1,len(quest)-1):
+            if quest[i].isnumeric():
+                if quest[i+1].isnumeric() or quest[i-1].isnumeric():
+                    raise ValueError("bad question")
+                continue
+            else:
+                if quest[i] == "plus":
+                    val = val + int(quest[i+1])
+                if quest[i] == "minus":
+                    val = val - int(quest[i+1])
+                if quest[i] == "multiplied":
+                    val = val * int(quest[i+2])
+                if quest[i] == "divided":
+                    val = val / int(quest[i+2])
+                if quest[i] == "by":
+                    continue
     return val
